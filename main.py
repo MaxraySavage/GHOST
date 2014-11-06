@@ -12,12 +12,33 @@ def getPrecedingWords(word,mode):
         res=(word[0:len(word)-1],'')
     return(res)
 
+def dictBuild (wordFile):
+    stateDict = {}
+    wordSet = set()
+    wordCount = 0
+    for line in wordFile:
+        line = line.translate(title_trans)
+        line = line.partition('_')[0]
+        
+        line = upper(line)
+        
+        #Only count words with 3 or more letters
+        lLength = len(line)
+        if lLength >= 3:
+            wordCount += 1
+            wordSet.add(line)
+            if lLength in stateDict:
+                stateDict[lLength][line] = (line,True)
+            else:
+                stateDict[lLength] = {line: (line,True)}
+    return (stateDict, wordCount, wordSet)
+
 #logic for translate
 title_trans=''.join(chr(c) if chr(c).isupper() or chr(c).islower()else '_' for c in range(256))
 
 #Choose word list
 
-wordList = open("WORDS.txt")
+wordFile = open("WORDS.txt")
 
 #Contain words in a set
 
@@ -35,21 +56,21 @@ wordCount = 0
 #Read lines from wordList into both the wordSet and stateDict
 #stateDict becomes a dictionary of dictionaries with inner dictionaries containing n-length game states (just words for now)
 
-for line in wordList:
-    line = line.translate(title_trans)
-    line = line.partition('_')[0]
-    
-    line = upper(line)
-    
-    #Only count words with 3 or more letters
-    lLength = len(line)
-    if lLength >= 3:
-        wordCount += 1
-        wordSet.add(line)
-        if lLength in stateDict:
-            stateDict[lLength][line] = (line,True)
-        else:
-            stateDict[lLength] = {line: (line,True)}
+(stateDict, wordCount, wordSet) = dictBuild(wordFile)
+
+##for line in wordFile:
+##    line = line.translate(title_trans)
+##    line = line.partition('_')[0]
+##    line = upper(line)
+##    #Only count words with 3 or more letters
+##    lLength = len(line)
+##    if lLength >= 3:
+##        wordCount += 1
+##        wordSet.add(line)
+##        if lLength in stateDict:
+##            stateDict[lLength][line] = (line,True)
+##        else:
+##            stateDict[lLength] = {line: (line,True)}
 
 n = stateDict.keys()
 n.sort()
@@ -150,3 +171,7 @@ def playGhost():
                     print("ILOSEIGUESS")
                     gameOver = True
             userTurn = True
+
+
+
+
