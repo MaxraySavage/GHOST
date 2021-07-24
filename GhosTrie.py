@@ -1,8 +1,3 @@
-import re
-import sys
-import pickle
-
-
 # I originally solved this problem with an array of dictionaries.
 # In that solution, array index i contained a dictionary of all words of length i.
 # This worked really well and may even run a little faster than the trie data structure
@@ -50,41 +45,3 @@ class GhosTrie:
     def set_wins(self):
         current_node = self.root
         current_node.cascade_wins()
-
-
-if __name__ == '__main__':
-    trie = GhosTrie()
-    file1 = open('GhostWordlist.txt', 'r')
-
-    # some way to serialize and deserialize may be good 
-    # so we don't have to build and rebuild code
-    #file2 = open('GhosTriePickle.pkl', 'wb')
-
-    while True:
-        nextWord = file1.readline()
-        if not nextWord:
-            break
-        #Removes all characters not in the alphabet, alphabetical characters with accents
-        #Since I am testing with a scrabble dictionary I don't think it currently is a problem
-        # There are no scrabble tiles with accents
-        #But there is potential for problems
-        nextWord = re.sub("[^A-Z]+", "", nextWord)
-        trie.insert_word(nextWord)
-
-    trie.set_wins()
-
-    # I wanted an approximate look at the size of the trie data structure
-    # So I wrote this quick function to do that
-    # The scrabble dictionary is 9 mb,
-    def get_total_size(node):
-        total = sys.getsizeof(node)
-        for child in node.children.values():
-            total += get_total_size(child)
-        return total
-
-    total_trie_size = get_total_size(trie.root)
-    print(total_trie_size)
-
-    # Haven't decided if I should use pickles or not
-    #pickle.dump(trie, file2)
-
