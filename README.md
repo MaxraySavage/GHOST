@@ -1,6 +1,12 @@
-GHOST
+# GHOST
 =====
 
-This script will, ideally, import a list of words and then play a game of GHOST with a human (a description of the game is available here http://en.wikipedia.org/wiki/Ghost_%28game%29). 
+GHOST is a word game where some number of players take turns adding letters to a string. If a player adds a letter that makes the current string into a dictionary word, that player loses. In order to prevent very quick games, there is a minimum word length, usually 3 or 4. 
 
-GHOST is solvable with any list of words (claimed without proof though eek!).
+This repo plays (and usually wins) at the game GHOST!
+
+To use this at home just run `python3 GhostGame.py`
+
+Or, a live version is currently hosted at 
+
+Further description of GHOST is available here [http://en.wikipedia.org/wiki/Ghost_%28game%29]. 
