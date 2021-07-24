@@ -9,4 +9,4 @@ To use this at home just run `python3 GhostGame.py`
 
 Or, a live version is currently hosted at 
 
-Further description of GHOST is available here [http://en.wikipedia.org/wiki/Ghost_%28game%29]. 
+Further description of GHOST is available here http://en.wikipedia.org/wiki/Ghost_%28game%29 
