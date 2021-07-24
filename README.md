@@ -7,6 +7,6 @@ This repo plays (and usually wins) at the game GHOST!
 
 To use this at home just run `python3 GhostGame.py`
 
-Or, a live version is currently hosted at 
+Or, a live version is currently hosted at https://replit.com/@SMaxray/GHOST#GhostGame.py 
 
 Further description of GHOST is available here http://en.wikipedia.org/wiki/Ghost_%28game%29 
