@@ -1,7 +1,6 @@
 # I originally solved this problem with an array of dictionaries.
 # In that solution, array index i contained a dictionary of all words of length i.
-# This worked really well and may even run a little faster than the trie data structure
-# But the trie is a lot easier to deal with
+# But the trie is a lot easier to deal with and I wanted to try working with them.
 
 
 class GhosTrieNode:
@@ -17,6 +16,8 @@ class GhosTrieNode:
             self.is_win = False
             return self.is_win
         for child_node in self.children.values():
+            # If there are any moves your opponent can play after you that would win
+            # Then your move is a losing move
             if child_node.cascade_wins():
                 self.is_win = False
         return self.is_win

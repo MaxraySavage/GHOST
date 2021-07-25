@@ -18,7 +18,7 @@ So we can safely remove it from the word list.
 To my surprise, this condition cuts the wordlist down by a huge amount.
 """
 
-file1 = open('Collins Scrabble Words (2019).txt', 'r')
+file1 = open('Scrabble Words.txt', 'r')
 file2 = open('GhostWordlist.txt', 'w')
 
 minWordLength = 4
@@ -43,8 +43,7 @@ while True:
         words.add(nextWord)
 
    
-# If there any words that have substrings that are over the minimum length, 
-# Those words are never actually reachable in game so let's get rid of them
+# Next we check to see which words are reachable.
 # To my surprise this actually cuts down the size of the wordlist by about a factor of 5
 # A reminder that english words are incredibly sparse in the space of all possible combinations of letters
 # If the word is reachable, add it to a new list of reachable words
@@ -61,7 +60,7 @@ for word in words:
         continue
     # word is still reachable unless proven otherwise
     reachableWord = True
-    # Iterate over all substrings that are longer than min word length
+    # Iterate over all substrings that are at or longer than min word length
     for i in range(minWordLength, len(word)):
         wordSubstring = word[0:i]
         if wordSubstring in words:
@@ -71,7 +70,7 @@ for word in words:
         wordList.append(word)
 
 
-# Now we can write out our sorted list to a file
+# Now we can write out our list to a file
 for word in wordList:
     word = word + "\n"
     file2.write(word)

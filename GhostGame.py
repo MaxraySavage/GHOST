@@ -1,6 +1,4 @@
-import re
 import random
-from GhosTrie import GhosTrie
 
 
 def play_ghost(trie):
@@ -13,7 +11,6 @@ def play_ghost(trie):
         player_first = input("Error, please input y or n ")
     user_turn = (player_first == 'y')
     game_over = False
-    user_win = False
 
     while not game_over:
         if user_turn:
@@ -51,7 +48,6 @@ def play_ghost(trie):
                     print(current_string + " is a word.")
                     print("I win this time.")
             user_turn = False
-            print("\n")
         else:
             # This section handles the computer's move
             # for each difficulty level beyond 1, the computer picks another random choice
@@ -80,19 +76,4 @@ def play_ghost(trie):
                 print("GOOD JOB YOU WIN!!!!!!")
 
             user_turn = True
-            print("\n")
 
-
-if __name__ == '__main__':
-    game_trie = GhosTrie()
-    file1 = open('GhostWordlist.txt', 'r')
-    while True:
-        nextWord = file1.readline()
-        if not nextWord:
-            break
-        nextWord = re.sub("[^A-Z]+", "", nextWord)
-        game_trie.insert_word(nextWord)
-
-    game_trie.set_wins()
-
-    play_ghost(game_trie)
