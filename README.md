@@ -5,7 +5,7 @@ GHOST is a word game where some number of players take turns adding letters to a
 
 This repo plays (and usually wins) at the game GHOST!
 
-To use this at home just run `python3 GhostGame.py`
+To use this at home just run `python3 main.py`
 
 Or, a live version is currently hosted at https://replit.com/@SMaxray/GHOST#GhostGame.py 
 
